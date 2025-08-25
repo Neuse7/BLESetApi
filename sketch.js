@@ -243,7 +243,6 @@ function initProgressBar() {
     downloadButton.disabled = true;
     fastRateButton.disabled = true;
     slowRateButton.disabled = true;
-    demoRateButton.disabled = true;
     const progressBar = document.getElementById('progressBar');
     if (progressBar) progressBar.value = 0;
 }
@@ -330,7 +329,6 @@ function startDataReceiveTimeout() {
         downloadButton.disabled = false;
         fastRateButton.disabled = false;
         slowRateButton.disabled = false;
-        demoRateButton.disabled = false;
         displayMessage("エラー: デバイスからの応答がありません");
     }, 3000); // 3秒待つ
 }
@@ -524,7 +522,6 @@ async function handleDataReceived(event) {
             downloadButton.disabled = false;
             fastRateButton.disabled = false;
             slowRateButton.disabled = false;
-            demoRateButton.disabled = false;
             hideProgressBar();
         }
         await queueWriteRequest(new Uint8Array([0xA6]));
