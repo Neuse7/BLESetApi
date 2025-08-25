@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area Setting App</title>
+    <title>領域設定アプリ</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Favicon -->
     <link rel="icon" href="Demo.ico" type="image/x-icon">
-    
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="Demo180.png">
-    
     <!-- Android Chrome Icon -->
     <link rel="icon" type="image/png" sizes="192x192" href="Demo192.png">
-
     <!-- Safari Pinned Tab Icon -->
     <link rel="mask-icon" href="Demo.svg" color="#5bbad5">
     
@@ -21,38 +18,59 @@
 </head>
 <body>
     <div class="header">
-        <h1>Area Setting App</h1>
+        <h1>領域設定アプリ</h1>
+		<span class="version-label">v1.0.1</span>
     </div>
+
     <div class="main-container">
         <div class="left-panel">
+			<div class="button-container">
+                <button id="scanButton">探す</button>
+                <button id="disconnectButton" disabled>切断</button>
+				<button id="downloadCsvButton" disabled>Log</button>
+				<button id="saveCsvButton" style="display: none;">Download</button>
+			</div>
+            <div class="input-header">領域の設定</div>
+            <div class="input-container">
+                <input type="number" id="value1" placeholder="X" min="0" step="1">
+                <span>cm</span>
+            </div>
+            <div class="input-container">
+                <input type="number" id="value2" placeholder="Y" min="0" step="1">
+                <span>cm</span>
+            </div>
+            <div class="input-container">
+                <input type="number" id="value3" placeholder="Z" min="0" step="1">
+                <span>cm</span>
+            </div>
             <div class="button-container">
-                <button id="scanButton">Scan</button>
-                <button id="disconnectButton" disabled>Disconnect</button>
-	    </div>
-            <div class="input-header">Area Setting</div>
-            <div class="input-container">
-                <input type="number" id="value1" value="0"　placeholder="X" min="0" step="1">
-                <span>cm</span>
-            </div>
-            <div class="input-container">
-                <input type="number" id="value2" value="0"　placeholder="Y" min="0" step="1">
-                <span>cm</span>
-            </div>
-            <div class="input-container">
-                <input type="number" id="value3" value="0"　placeholder="Z" min="0" step="1">
-                <span>cm</span>
-            </div>
-            <div class="button-container">
-                <button id="sendButton" disabled>Send</button>
+			    <button id="sendButton" disabled>送信</button>
+			</div>
+
+            <!-- 測距間隔の変更 -->
+            <div class="time-header">測距間隔の変更</div>
+            <div class="rate-container">
+                <button id="fastRateButton" disabled>Fast Rate</button>
+                <span class="rate-text">(12ms)</span>
+                <button id="slowRateButton" disabled>Slow Rate</button>
+                <span class="rate-text">(60ms)</span>
+                <button id="demoRateButton" disabled>Demo Rate</button>
+                <span class="rate-text">(100ms)</span>
             </div>
 
             <div id="messageDiv" class="message"></div>
+            <div id="progress-container" style="display:none;">
+                <span id="progressLabel">CSVデータ作成中</span>
+                <progress id="progressBar" value="0" max="100"></progress>
+            </div>
+
         </div>
 
         <div class="right-panel">
             <!-- グラフを描画する場所 -->
             <div id="graph" class="graph"></div>
         </div>
+    </div>
 
     <script src="sketch.js"></script>
 </body>
