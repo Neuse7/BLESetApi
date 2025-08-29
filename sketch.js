@@ -235,6 +235,10 @@ function showProgressBar() {
 }
 
 function hideProgressBar() {
+    sendButton.disabled = false;
+    downloadButton.disabled = false;
+    fastRateButton.disabled = false;
+    slowRateButton.disabled = false;
     document.getElementById('progress-container').style.display = 'none';
 }
 		
@@ -325,10 +329,6 @@ function startDataReceiveTimeout() {
     clearTimeout(dataReceiveTimeoutHandle); // 念のためリセット
     dataReceiveTimeoutHandle = setTimeout(() => {
         hideProgressBar();
-        sendButton.disabled = false;
-        downloadButton.disabled = false;
-        fastRateButton.disabled = false;
-        slowRateButton.disabled = false;
         displayMessage("エラー: デバイスからの応答がありません");
     }, 3000); // 3秒待つ
 }
@@ -518,10 +518,6 @@ async function handleDataReceived(event) {
         if (totalEntries && currentEntries >= totalEntries) {
             document.getElementById('saveCsvButton').style.display = 'inline-block';
             displayMessage("データ受信完了。Downloadボタンを押してください。");
-            sendButton.disabled = false;
-            downloadButton.disabled = false;
-            fastRateButton.disabled = false;
-            slowRateButton.disabled = false;
             hideProgressBar();
         }
         await queueWriteRequest(new Uint8Array([0xA6]));
@@ -531,13 +527,9 @@ async function handleDataReceived(event) {
         totalEntries = (receivedData[1] | (receivedData[2] << 8) | (receivedData[3] << 16) | (receivedData[4] << 24)) >>> 0;
         if (totalEntries === 0) {
             displayMessage("受信データがありません。");
-        　　sendButton.disabled = false;
-        　　downloadButton.disabled = false;
-        　　fastRateButton.disabled = false;
-        　　slowRateButton.disabled = false;
-		　　　　hideProgressBar();
-　　　　　　return;
-    　　}
+            hideProgressBar();
+            return;
+        }
         currentEntries = 0;
         console.log("totalEntries set:", totalEntries);
         updateProgressBar();
