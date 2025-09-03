@@ -19,9 +19,9 @@ html {
     padding: 20px;
     border: 1px solid #ccc;
     text-align: center;
-    width: 100vw;              /* ← ビューポート幅にぴったり */
-    box-sizing: border-box;    /* ← padding/borderを含めて幅計算 */
-    margin: 0;                 /* ← 念のため明示 */
+    width: 100%;             /* ← ここがポイント */
+    box-sizing: border-box;  /* ← これも重要 */
+    margin: 0;
 }
 		
 .version-label {
