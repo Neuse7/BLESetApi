@@ -43,7 +43,7 @@ h1 {
     justify-content: space-between;
     padding: 20px;
     flex: 1;
-    gap: 20px;
+    gap: 10px;
 }
 
 .left-panel {
@@ -148,8 +148,6 @@ button {
     .left-panel, .right-panel {
         width: 100%;
 		margin: 0; /* 左右の余白をなくす */
-        border-radius: 0; /* スマホでは角丸もなくすと画面にフィット感が出る */
-        box-shadow: none; /* 影もスマホでは削除してシンプルに */
     }
 }
 		
