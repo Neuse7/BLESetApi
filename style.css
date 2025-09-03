@@ -14,7 +14,8 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     text-align: center;
-    padding: 20px;
+    width: 100%;              /* ← 追加①：必ず100%幅を取る */
+    box-sizing: border-box;   /* ← 追加②：paddingやborderを含めて幅100% */
 }
 		
 .version-label {
@@ -134,14 +135,17 @@ button {
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
-        width: 90%; /* 画面幅に合わせて調整 */
+        width: 100%; /* 画面幅に合わせて調整 */
+		padding: 0;  /* 追加: パディングも削除して完全に詰める */
     }
     .left-panel, .right-panel {
         width: 100%;
+		margin: 0; /* 左右の余白をなくす */
+        border-radius: 0; /* スマホでは角丸もなくすと画面にフィット感が出る */
+        box-shadow: none; /* 影もスマホでは削除してシンプルに */
     }
 }
 		
-/* ===== 追加: プログレスバー用スタイル ===== */
 #progress-container {
     position: fixed;
     top: 50%;
